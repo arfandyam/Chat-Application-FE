@@ -1,7 +1,7 @@
 import type { User } from "../types/domain/user";
 import type { AddUserResponse, GetAllUserResponse } from "../types/response/user";
 
-export const addUser = async (username: string): Promise<User> => {
+export const addUserApi = async (username: string): Promise<User> => {
     // Logic to add user
     const response = await fetch('http://localhost:8080/user/login', {
         method: 'POST',
@@ -15,7 +15,7 @@ export const addUser = async (username: string): Promise<User> => {
     return user.data;
 }
 
-export const getAllUsers = async (): Promise<User[]> => {
+export const getAllUsersApi = async (): Promise<User[]> => {
     const response = await fetch('http://localhost:8080/user', {
         method: 'GET',
         headers: {
@@ -26,7 +26,7 @@ export const getAllUsers = async (): Promise<User[]> => {
     return users.data;
 }
 
-export const getFriendsUser = async (userId: string): Promise<User[]> => {
+export const getFriendsUserApi = async (userId: string): Promise<User[]> => {
     const response = await fetch(`http://localhost:8080/user/${userId}/friends`, {
         method: 'GET',
         headers: {

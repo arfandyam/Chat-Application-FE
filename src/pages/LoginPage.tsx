@@ -15,9 +15,13 @@ import { User } from "lucide-react"
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '../lib/utils';
-import { addUser } from '../api/user';
+import { addUserApi } from '../api/user';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
@@ -28,8 +32,9 @@ const LoginPage = () => {
 
     async function addUsername(data: TAddUsernameValidator) {
         // Handle adding username logic here
-        const user = await addUser(data.username);
+        const user = await addUserApi(data.username);
         sessionStorage.setItem('user', JSON.stringify(user));
+        navigate('/dashboard');
     }
 
     return (
