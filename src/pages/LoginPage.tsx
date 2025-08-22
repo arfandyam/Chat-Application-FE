@@ -15,7 +15,7 @@ import { User } from "lucide-react"
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '../lib/utils';
-import { AddUser } from '../api/user';
+import { addUser } from '../api/user';
 
 const LoginPage = () => {
     const {
@@ -26,9 +26,9 @@ const LoginPage = () => {
         resolver: zodResolver(AddUsernameValidator)
     });
 
-    async function AddUsername(data: TAddUsernameValidator) {
+    async function addUsername(data: TAddUsernameValidator) {
         // Handle adding username logic here
-        const user = await AddUser(data.username);
+        const user = await addUser(data.username);
         sessionStorage.setItem('user', JSON.stringify(user));
     }
 
@@ -40,7 +40,7 @@ const LoginPage = () => {
                     <p className="text-gray-600">Enter your username to get started</p>
                 </CardHeader>
                 <CardContent>
-                    <form onSubmit={handleSubmit(AddUsername)}>
+                    <form onSubmit={handleSubmit(addUsername)}>
                         <div className="space-y-4">
                             <div className="relative">
                                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
